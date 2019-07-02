@@ -67,25 +67,32 @@ public class CraftingRecipes
 	public static void addOredictionary()
 	{
 		//Register ore dictionary entries
-		OreDictionary.registerOre("oreCoal", coalOreNetherrack);
-		OreDictionary.registerOre("oreIron", ironOreEndStone);
-		OreDictionary.registerOre("oreIron", ironOreSandstone);
-		OreDictionary.registerOre("oreIron", ironOreSandstoneRed);
-		OreDictionary.registerOre("oreGold", goldOreSandstone);
-		OreDictionary.registerOre("oreGold", goldOreSandstoneRed);
-		OreDictionary.registerOre("oreRedstone", redstoneOreEndStone);
+		OreDictionary.registerOre("oreCoal",	coalOreNetherrack);
+		OreDictionary.registerOre("oreIron",	ironOreEndStone);
+		OreDictionary.registerOre("oreIron",	ironOreSandstone);
+		OreDictionary.registerOre("oreIron",	ironOreSandstoneRed);
+		OreDictionary.registerOre("oreGold",	goldOreSandstone);
+		OreDictionary.registerOre("oreGold",	goldOreSandstoneRed);
+		OreDictionary.registerOre("oreRedstone",redstoneOreEndStone);
+		
+		OreDictionary.registerOre("oreUranium",		oreUranium);
+		OreDictionary.registerOre("blockUranium",	uraniumBlock);
+		OreDictionary.registerOre("gemUranium",		rawUranium);
 		
 		OreDictionary.registerOre("dirt", new ItemStack(coloredDirt, 1, OreDictionary.WILDCARD_VALUE));
 		
-		OreDictionary.registerOre("plankWood", glowingPlanks);
-		OreDictionary.registerOre("plankWood", endPlanks);
-		OreDictionary.registerOre("plankWood", treatedPlanks);
+		OreDictionary.registerOre("plankWood",	glowingPlanks);
+		OreDictionary.registerOre("plankWood",	endPlanks);
 		OreDictionary.registerOre("plankWood",	new ItemStack(planks, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("plankWood",	treatedPlanks);
+		
 		OreDictionary.registerOre("logWood",	glowingLog);
-		OreDictionary.registerOre("logWood", endLog);
+		OreDictionary.registerOre("logWood",	endLog);
 		OreDictionary.registerOre("logWood",	new ItemStack(log, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("treeSapling",endSapling);
-		OreDictionary.registerOre("treeSapling",rainbowSapling);
+		
+		OreDictionary.registerOre("treeSapling",	endSapling);
+		OreDictionary.registerOre("treeSapling",	rainbowSapling);
+		
 		OreDictionary.registerOre("treeLeaves",	endLeaves);
 		OreDictionary.registerOre("treeLeaves",	new ItemStack(leaves1, 1, OreDictionary.WILDCARD_VALUE));
 	}

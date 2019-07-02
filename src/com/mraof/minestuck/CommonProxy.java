@@ -52,6 +52,7 @@ public class CommonProxy
 		MinestuckSoundHandler.initSound();
 		
 		MinestuckCriteriaTriggers.register();
+		AlchemyRecipes.prepareForModRecipes();
 	}
 	
 	public void init()

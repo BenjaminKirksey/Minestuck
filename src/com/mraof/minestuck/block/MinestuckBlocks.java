@@ -162,6 +162,38 @@ public class MinestuckBlocks
 	
 	public static Block blockEnder = new BlockFluidEnder(fluidEnder, Material.WATER);
 	
+	{
+		if(fluidOil.getBlock() == null)
+		{
+			fluidOil.setBlock(blockOil);
+		}
+		
+		if(fluidBlood.getBlock() == null)
+		{
+			fluidOil.setBlock(blockBlood);
+		}
+		
+		if(fluidBrainJuice.getBlock() == null)
+		{
+			fluidOil.setBlock(blockBrainJuice);
+		}
+		
+		if(fluidEnder.getBlock() == null)
+		{
+			fluidOil.setBlock(blockEnder);
+		}
+		
+		if(fluidWatercolors.getBlock() == null)
+		{
+			fluidOil.setBlock(blockWatercolors);
+		}
+		
+//		if(fluidLightWater.getBlock() == null)
+//		{
+//			fluidOil.setBlock(blockLightWater);
+//		}
+	}
+	
 	public static Block[] liquidGrists;
 	public static Fluid[] gristFluids;
 
@@ -274,7 +306,7 @@ public class MinestuckBlocks
 			FluidRegistry.registerFluid(gristFluids[grist.getId()]);
 			liquidGrists[grist.getId()] = GameRegistry.register(new BlockFluidGrist(gristFluids[grist.getId()], Material.WATER).setRegistryName("liquid_" + grist.getName())).setUnlocalizedName("liquid_" + grist.getName());
 		}*/
-
+		
 		cruxiteBlock.setHarvestLevel("pickaxe", 0);
 		uraniumBlock.setHarvestLevel("pickaxe", 1);
 		coalOreNetherrack.setHarvestLevel("pickaxe", Blocks.COAL_ORE.getHarvestLevel(Blocks.COAL_ORE.getDefaultState()));
@@ -294,7 +326,10 @@ public class MinestuckBlocks
 		boolean useFluid = FluidRegistry.registerFluid(fluid);
 		
 		if(useFluid)
+		{
 			fluid.setUnlocalizedName(unlocalizedName);
+			//FluidRegistry.addBucketForFluid(fluid);
+		}
 		else fluid = FluidRegistry.getFluid(name);
 		
 		return fluid;

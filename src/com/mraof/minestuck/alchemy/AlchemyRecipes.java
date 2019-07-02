@@ -854,10 +854,11 @@ public class AlchemyRecipes
 		CombinationRegistry.addCombination(new ItemStack(Items.COOKIE), new ItemStack(Blocks.COBBLESTONE), MODE_AND, false, false, new ItemStack(rockCookie));
 		CombinationRegistry.addCombination(new ItemStack(Items.COOKIE), new ItemStack(Blocks.GRAVEL), MODE_AND, false, false, new ItemStack(rockCookie));
 		
-		//Uranium-based non-weapon and uranium cooker recipes
+		//Uranium-based non-weapon recipes
 		CombinationRegistry.addCombination(new ItemStack(rawCruxite), new ItemStack(rawUranium), MODE_AND, new ItemStack(energyCore));
 		CombinationRegistry.addCombination(new ItemStack(rawUranium), new ItemStack(Items.COOKED_BEEF), MODE_OR, new ItemStack(irradiatedSteak));
 		CombinationRegistry.addCombination(new ItemStack(upStick), new ItemStack(energyCore), MODE_AND, new ItemStack(quantumSabre));
+		//Uranium cooker recipes, as well as smelting and oreDict entries, have been moved to com.mraof.minestuck.util.CraftingRecipes
 		
 		//CombinationRegistry.addCombination(new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.SUGAR), MODE_OR, false, false, new ItemStack(beverage, 1, 0));		//Tab
 		//CombinationRegistry.addCombination(new ItemStack(Items.POTIONITEM, 1, 0), new ItemStack(Items.DYE, 1, 14), MODE_OR, false, true, new ItemStack(beverage, 1, 1));	//Orange F
@@ -870,6 +871,11 @@ public class AlchemyRecipes
 		//CombinationRegistry.addCombination(new ItemStack(beverage, 1, 2), new ItemStack(Items.DYE, 1, 9), MODE_AND, true, true, new ItemStack(beverage, 1, 8));			//Peach F
 		//CombinationRegistry.addCombination(new ItemStack(beverage, 1, 1), new ItemStack(Blocks.TNT), MODE_OR, true, false, new ItemStack(beverage, 1, 9));				//Redpop F
 		
+	}
+	
+	public static void prepareForModRecipes()
+	{
+		preInitIMC(new TinkersConstructSupport(), "TConstruct");
 	}
 	
 	public static void registerModRecipes() 
@@ -886,19 +892,6 @@ public class AlchemyRecipes
 		GristRegistry.addGristConversion("ingotCobalt", new GristSet(new GristType[] {GristType.Cobalt}, new int[] {18}));
 		GristRegistry.addGristConversion("ingotArdite", new GristSet(new GristType[] {GristType.Garnet, GristType.Sulfur}, new int[] {12, 8}));
 		GristRegistry.addGristConversion("ingotRedAlloy", new GristSet(new GristType[] {GristType.Rust, GristType.Garnet}, new int[] {18, 32}));
-		
-		if(oreMultiplier != 0)
-		{
-			GristRegistry.addGristConversion("oreCopper", new GristSet(new GristType[]{GristType.Rust, GristType.Cobalt, GristType.Build}, new int[]{16*oreMultiplier, 3*oreMultiplier, 4}));
-			GristRegistry.addGristConversion("oreTin", new GristSet(new GristType[]{GristType.Rust, GristType.Caulk, GristType.Build}, new int[]{12*oreMultiplier, 8*oreMultiplier, 4}));
-			GristRegistry.addGristConversion("oreSilver", new GristSet(new GristType[]{GristType.Rust, GristType.Mercury, GristType.Build}, new int[]{12*oreMultiplier, 8*oreMultiplier, 4}));
-			GristRegistry.addGristConversion("oreLead", new GristSet(new GristType[]{GristType.Rust, GristType.Cobalt, GristType.Shale, GristType.Build}, new int[]{12*oreMultiplier, 4*oreMultiplier, 4*oreMultiplier, 4}));
-			GristRegistry.addGristConversion("oreNickel", new GristSet(new GristType[]{GristType.Rust, GristType.Sulfur, GristType.Build}, new int[]{12*oreMultiplier, 8*oreMultiplier, 4}));
-			GristRegistry.addGristConversion("oreAluminium", new GristSet(new GristType[]{GristType.Rust, GristType.Chalk, GristType.Build}, new int[]{12*oreMultiplier, 6*oreMultiplier, 4}));
-			
-			GristRegistry.addGristConversion("oreCobalt", new GristSet(new GristType[] {GristType.Cobalt, GristType.Build}, new int[] {18*oreMultiplier, 4}));
-			GristRegistry.addGristConversion("oreArdite", new GristSet(new GristType[] {GristType.Garnet, GristType.Sulfur, GristType.Build}, new int[] {12*oreMultiplier, 8*oreMultiplier, 4}));
-		}
 		
 		if(!OreDictionary.getOres("ingotRedAlloy").isEmpty())
 			CombinationRegistry.addCombination(new ItemStack(Items.IRON_INGOT), new ItemStack(Items.REDSTONE), MODE_OR, OreDictionary.getOres("ingotRedAlloy").get(0));
@@ -1108,6 +1101,21 @@ public class AlchemyRecipes
 		catch(Exception e)
 		{
 			Debug.logger.error("Exception while creating"+(dynamic?" dynamic":"")+" recipes for mod \""+modname+"\":", e);
+		}
+	}
+	
+	private static void preInitIMC(ModSupport modSupport, String modname)
+	{
+		try
+		{
+			if(Loader.isModLoaded(modname))
+			{
+				modSupport.interModComms();
+			}
+		}
+		catch(Exception e)
+		{
+			Debug.logger.error("Exception while sending preInit message to mod \""+modname+"\":", e);
 		}
 	}
 	

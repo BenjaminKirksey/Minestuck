@@ -8,6 +8,8 @@ import com.mraof.minestuck.alchemy.GristType;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 
 public class TinkersConstructSupport extends ModSupport
 {
@@ -32,6 +34,15 @@ public class TinkersConstructSupport extends ModSupport
 		
 		CombinationRegistry.addCombination("treeLeaves", "ingotAluminium", CombinationRegistry.Mode.MODE_AND, new ItemStack(oreBush2, 1, 0));
 		CombinationRegistry.addCombination("treeLeaves", Items.EXPERIENCE_BOTTLE, 0, CombinationRegistry.Mode.MODE_AND, new ItemStack(oreBush2, 1, 1));
+	}
+	
+	@Override
+	public void interModComms() throws Exception
+	{
+		// Tell TiCon that there is a gemUranium that can be cast
+		NBTTagCompound tag = new NBTTagCompound();
+		tag.setString("gem", "Uranium");
+		FMLInterModComms.sendMessage("tconstruct", "integrateSmeltery", tag);
 	}
 	
 }

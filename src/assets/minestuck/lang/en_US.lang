@@ -1083,6 +1083,20 @@ strife.club.name=Clubkind
 strife.sickle.name=Sicklekind
 strife.spork.name=Sporkkind
 
+tile.oil.name=Oil
+tile.blood.name=Blood
+tile.brainJuice.name=Brain Juice
+tile.watercolors.name=Paint
+tile.ender.name=End Fluid
+tile.lightWater.name=Light Water
+
+fluid.tile.oil=Oil
+fluid.tile.blood=Blood
+fluid.tile.brainJuice=Brain Juice
+fluid.tile.watercolors=Paint
+fluid.tile.ender=End Fluid
+fluid.tile.lightWater=Light Water
+
 tile.chessTile.black.name=Black Chess Tile
 tile.chessTile.white.name=White Chess Tile
 tile.chessTile.lightgrey.name=Light Grey Chess Tile
@@ -1103,10 +1117,6 @@ tile.sburbMachine.totemLathe.name=Totem Lathe
 tile.sburbMachine.alchemiter.name=Alchemiter
 tile.crockerMachine.gristWidget.name=GristWidget 12000
 tile.sburbComputer.name=SBURB Computer
-tile.oil.name=Oil
-tile.blood.name=Blood
-tile.watercolors.name=Paint
-tile.ender.name=End Fluid
 tile.layeredSand.name=Layered Sand
 tile.transportalizer.name=Transportalizer
 tile.coarseEndStone.name=Coarse End Stone

@@ -1,8 +1,14 @@
 package com.mraof.minestuck.item;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mraof.minestuck.block.MinestuckBlocks;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -10,13 +16,17 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.UniversalBucket;
 
 public class ItemMinestuckBucket extends ItemBucket	//Unsure if anything more should update for 1.9
 {
@@ -29,6 +39,14 @@ public class ItemMinestuckBucket extends ItemBucket	//Unsure if anything more sh
 		setCreativeTab(TabMinestuck.instance);
 		setContainerItem(Items.BUCKET);
 		setHasSubtypes(true);
+	}
+	
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	{
+		UniversalBucket.getItemFromBlock(fillFluids.get(this.getDamage(stack)).getBlock());
+		if(stack != null)
+			entityIn.replaceItemInInventory(itemSlot, stack);
 	}
 	
 	@Override

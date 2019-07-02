@@ -12,6 +12,8 @@ import com.mraof.minestuck.tileentity.*;
 import com.mraof.minestuck.tracker.MinestuckPlayerTracker;
 import com.mraof.minestuck.util.*;
 import com.mraof.minestuck.world.MinestuckDimensionHandler;
+
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -27,26 +29,22 @@ import static com.mraof.minestuck.Minestuck.MOD_NAME;
 @Mod(modid = MOD_ID, name = MOD_NAME, version = "1.12.2-1.3.270", guiFactory = "com.mraof.minestuck.client.gui.MinestuckGuiFactory", acceptedMinecraftVersions = "[1.12,1.12.2]")
 public class Minestuck
 {
-	public static final String MOD_NAME = "Minestuck";
-	public static final String MOD_ID = "minestuck";
-	
-	/**
-	 * True only if the minecraft application is client-sided 
-	 */
-	public static boolean isClientRunning;
-	/**
-	 * True if the minecraft application is server-sided, or if there is an integrated server running
-	 */
-	public static volatile boolean isServerRunning;
-	
 	// The instance of your mod that Forge uses.
 	@Instance("minestuck")
 	public static Minestuck instance;
+	public static final String MOD_NAME = "Minestuck";
+	public static final String MOD_ID = "minestuck";
+	public static long worldSeed = 0;	//TODO proper usage of seed when generating titles, land aspects, and land dimension data
+	
+	//{ FluidRegistry.enableUniversalBucket(); }
+	
+	/** True only if the minecraft application is client-sided */
+	public static boolean isClientRunning;
+	/** True if the minecraft application is server-sided, or if there is an integrated server running */
+	public static volatile boolean isServerRunning;
 	
 	@SidedProxy(clientSide = "com.mraof.minestuck.client.ClientProxy", serverSide = "com.mraof.minestuck.CommonProxy")
 	public static CommonProxy proxy;
-
-	public static long worldSeed = 0;	//TODO proper usage of seed when generating titles, land aspects, and land dimension data
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) 
